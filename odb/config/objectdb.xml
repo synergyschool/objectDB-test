@@ -1,0 +1,28 @@
+<objectdb>
+    <general>
+      <temp path="$objectdb/odb/tmp/ObjectDB" threshold="1000mb" />
+      <network inactivity-timeout="0" />
+      <url-history size="50" user="true" password="true" />
+      <log path="$objectdb/log/" max="8mb" stdout="false" stderr="false" />
+      <log-archive path="$objectdb/log/archive/" retain="90" />
+      <logger name="*" level="info" />
+    </general>
+    <database>
+      <size initial="50mb" resize="10mb" page="2kb" />
+      <recovery enabled="true" sync="false" path="." max="128mb" />
+      <recording enabled="false" sync="false" path="." mode="write" />
+      <locking version-check="true" />                                              <!--TODO disable -->
+      <processing cache="64mb" max-threads="10" synchronized="false" />
+      <query-cache results="32mb" programs="500" />
+
+        <extensions drop="temp,tmp" />
+    </database>
+    <entities>
+        <enhancement agent="true" reflection="warning" />
+        <cache ref="strong" level2="1000mb" />
+        <fetch hollow="true" />
+        <persist serialization="false" />
+        <cascade-persist always="auto" on-persist="false" on-commit="true" />
+        <dirty-tracking arrays="false" />
+    </entities>
+</objectdb>

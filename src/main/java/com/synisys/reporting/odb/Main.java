@@ -39,7 +39,7 @@ public class Main {
 //                    }
 //                });
 
-        Profiler.execute("Report0 executed in %s seconds", new Runnable() {
+        Profiler.execute("Warm-up report executed in %s seconds", new Runnable() {
             @Override
             public void run() {
                 //Query q1 = entityManager.createQuery("SELECT status, sum(status.projects.projectSectors.commitedAmount) from Status status group by status");
@@ -50,6 +50,17 @@ public class Main {
 
                 Query q1 = entityManager.createQuery(query1);
                 List<?> list = q1.getResultList();
+            }
+        });
+
+        Profiler.execute("Number of projects calculated in %s seconds", new Runnable() {
+            @Override
+            public void run() {
+                String query1 = "SELECT count(project) from Project project";
+
+                Query q1 = entityManager.createQuery(query1);
+                List<?> list = q1.getResultList();
+                System.out.println("Number of projects: " + list.get(0));
             }
         });
 
